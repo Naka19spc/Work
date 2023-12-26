@@ -1,4 +1,32 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+import Tables from './Tables.vue'
+
+
+const  name =ref('')
+const surname =ref('');
+const age =ref('');
+const salary =ref('');
+const department =ref('');
+const workers =ref([{
+  name:"avto",
+  surname:'Zen',
+  age:28,
+  salary:123,
+  department:'tourism'
+}]);
+function add(){
+  console.log("teest",name.value, surname.value, age.value, salary.value, department.value);
+  const newWorker ={
+    name: name.value,
+    surname: surname.value
+  }
+  console.log("newworker", newWorker);
+ workers.value.push(newWorker)
+}
+
+</script>
+
 
 <template>
 
@@ -6,22 +34,24 @@
     <div class="main-container">
       <h1>Detail Information</h1>
       <div class="input-container">
-        <input class="inpt" value="Name" />
-        <input class="inpt" value="Surname" />
-        <input class="inpt" value="Age" />
-        <input class="inpt" value="Salary" />
+        <input class="inpt"  type="text" v-model="name" />
+        <input class="inpt"  type="text" v-model="surname" />
+        <input class="inpt"  type="Number" v-model="age"/>
+        <input class="inpt"  type="Number" v-model="salary" />
 
-        <select class="inpt" name="Department" id="Department">
-          <option value="volvo">It Department</option>
-          <option value="saab">Finance Department</option>
-          <option value="opel">Department of Tourism</option>
-          <option value="audi">Medical Department</option>
+        <select class="inpt" name="Department" id="Department" v-model="department" >
+          <option value="it">It Department</option>
+          <option value="finance">Finance Department</option>
+          <option value="tourism">Department of Tourism</option>
+          <option value="medical">Medical Department</option>
         </select>
+        <button @click="add" class="subButt">Submit</button>
+        
       </div>
+      
+      <Tables :listUsers = "workers" />
     </div>
-    <div>
-      <h2>Table</h2>
-    </div>
+
   </div>
 </template>
 
@@ -29,8 +59,8 @@
 
 .input-container {
   width: 200px;
-  height: 100vw;
-  background-color: hsla(160, 100%, 37%, 1);
+  /* height: 100vw; */
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -45,5 +75,16 @@
   display: flex;
 
   justify-content: space-around;
+}
+
+.subButt{
+ border: 1px solid black;
+ border-radius: 10px;
+ height: 25px;
+background-color:  hsla(160, 100%, 37%, 1);
+cursor: pointer;
+}
+.lists{
+ list-style: none;
 }
 </style>
