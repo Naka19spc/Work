@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import Tables from './Tables.vue'
+import Info from './Info.vue';
 
 
 const  name =ref('')
@@ -19,10 +20,26 @@ function add(){
   console.log("teest",name.value, surname.value, age.value, salary.value, department.value);
   const newWorker ={
     name: name.value,
-    surname: surname.value
+    surname: surname.value,
+    age:age.value,
+    salary:salary.value,
+    department:department.value,
+  
   }
-  console.log("newworker", newWorker);
- workers.value.push(newWorker)
+  if(name.value == '' || surname.value ==''){
+    alert("There is no name and surname")
+
+  }else{
+
+    console.log("newworker", newWorker);
+   workers.value.push(newWorker)
+   name.value =""
+   surname.value =""
+   age.value=""
+   salary.value =""
+   department.value=""
+  }
+
 }
 
 </script>
@@ -48,7 +65,7 @@ function add(){
         <button @click="add" class="subButt">Submit</button>
         
       </div>
-      
+      <Info/>
       <Tables :listUsers = "workers" />
     </div>
 

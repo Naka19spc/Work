@@ -2,6 +2,9 @@
 
 const props = defineProps(['listUsers'])
 console.log("listuser123", props.listUsers);
+function remove(item){
+console.log('Nakaa', item);
+}
 
 </script>
 
@@ -15,11 +18,12 @@ console.log("listuser123", props.listUsers);
     <th>Department</th>
   </tr>
   <tr v-for="item in listUsers">
-    <td>{{item.name}}</td>
+    <td>{{item.name}}</td> 
     <td>{{ item.surname }}</td>
     <td>{{item.age}}</td>
     <td>{{ item.salary }}</td>
     <td>{{item.department}}</td>
+    <button @click="remove(item)">Remove</button>
 </tr>
   
 </table>
