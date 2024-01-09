@@ -41,7 +41,10 @@ function add(){
   }
 
 }
-
+ function deleteUsers(item){
+ console.log("Remove function", item);
+ workers.value =workers.value.filter((element) => element.name !== item.name)
+ }
 </script>
 
 
@@ -57,7 +60,7 @@ function add(){
         <input class="inpt"  type="Number" v-model="salary" />
 
         <select class="inpt" name="Department" id="Department" v-model="department" >
-          <option value="it">It Department</option>
+          <option value="It">It Department</option>
           <option value="finance">Finance Department</option>
           <option value="tourism">Department of Tourism</option>
           <option value="medical">Medical Department</option>
@@ -65,9 +68,9 @@ function add(){
         <button @click="add" class="subButt">Submit</button>
         
       </div>
-      <Info/>
-      <Tables :listUsers = "workers" />
-    </div>
+      <Info :name ="name" :surname ="surname" :age="age" :salary="salary" :department="department"/>
+      <Tables :deleteWorker="deleteUsers" :listUsers = "workers" />
+         </div>
 
   </div>
 </template>
